@@ -1,0 +1,154 @@
+<<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Assignment</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            body{
+  align-items:center;
+  justify-content:center;
+ }
+
+p{
+  font-size:0.8rem;
+}
+
+.container{
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  left:20vw;
+  top:-160px;
+}
+h1{
+   text-align:center;
+   font-size:2rem;
+  
+}
+.main-container{
+  display:flex;
+  margin:0px auto;
+  height:600px;
+  width:600px;
+}
+.inputBox{
+  height:300px;
+  width:320px;
+  margin: 100px 100px 0px 60px;
+}
+
+input{
+  width:250px;
+  height:55px;
+  background-color: #D9D9D9;
+  font-weight:700;
+  font-size:0.8rem;
+  border: none;
+  padding:0 14px;
+  
+}
+#inputValue{
+  
+}
+
+#maxValue{
+  position:relative;
+  top: 75px;
+}
+
+#progress{
+  padding: 0px 0px;
+  height: 300px;
+  width: 60px;
+  margin:20px 0px;
+  background-color:#E4EBF5;
+  outline: none;
+  border:1px solid #E4EBF5;
+}
+#progress-done{
+  height: 0px;
+  width: 60px;
+  margin:0px 0;
+  outline: none;
+  background-color:#6EA3F2;
+}
+.heading-vpb{
+  position:relative;
+  top:326px;
+  left:-65px;
+  font-size:0.6rem;
+
+}
+  </style>
+
+
+    </head>
+    <body>
+    
+        <h1>Startoon Labs Assignment Screen</h1>
+    <form class= "main-container">
+    
+    <div class= "inputBox">
+      <div>
+         <input type="number"  class="input" id="inputValue"  placeholder="Input Value"/>
+      </div>  
+    <div>
+         <input type="number" class="input" id="maxValue" placeholder="Max Value(default value is 100)"/>
+    </div>
+    </div>
+    <div id="progress">
+      <div id="progress-done">
+        
+      </div>
+    </div>  
+      <p class="heading-vpb">Vertical Progress Bar</p>
+    </form>  
+    
+        <script>
+        const progress = document.getElementById("progress-done");
+        const input = document.getElementById("inputValue");
+        const maxInput = document.getElementById("maxValue");
+
+        let finalValue=0;
+        let max=100;
+        function changeWidth(){
+        console.log("fn called");
+        progress.style.height=`${(finalValue/max) * 100}%`;
+        progress.innerText =`${Math.ceil((finalValue / max) * 100)}%`;
+        console.log(progress.innerText);
+        }
+        input.addEventListener("keyup", function(){
+        if(max==" ")
+        alert("Please enter maximum value first")
+        finalValue= parseInt(input.value, 10);
+        if(finalValue>max){
+        alert("Error!.Enter input value less than Max value or Max value more than input value.")
+        progress.style.height=0; 
+        progress.innerText ="";
+        }else{
+        changeWidth();
+        }
+        });
+        maxInput.addEventListener("keyup", function(){
+        max=parseInt(maxInput.value, 10);
+        if(finalValue>max){
+        alert("Error!..Enter Max value more than Input value")
+            progress.style.height=0;
+            progress.innerText ="";
+        }else{
+            changeWidth();
+        }
+        });
+            
+        
+        </script>
+    </body>
+</html>
